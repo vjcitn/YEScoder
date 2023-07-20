@@ -1,0 +1,135 @@
+---
+title: "Z1: YEScoder ImageArray introduction"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Z1: YEScoder ImageArray introduction}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# ImageArrays
+
+First we set up our R session to include a package
+with some images.  A dataset called `ciftrain1k`
+holds 1000 digital images that have been labeled.
+
+```{r setup,message=FALSE}
+library(YEScoder)
+library(littleDeep)
+library(jpeg)
+data(ciftrain1k)
+ciftrain1k
+```
+
+We have a special function that "plots" a handful
+of the images.
+
+```{r lkprev, echo=FALSE}
+preview(ciftrain1k)
+```
+
+We'll look more closely at the collection of images later.
+For now note that we can evaluate the 'variable' `ciftrain1k`
+
+```{r lkcif}
+ciftrain1k
+```
+
+and learn about the labels applied to various images:
+
+```{r lklabs}
+getTypes(ciftrain1k)[1:9]
+head(table(getTypes(ciftrain1k)))
+```
+
+# Focus on one image
+
+We can get a single image by using `[]`
+with `ciftrain1k`, and extracting
+the numerical data as an array.
+```{r doone}
+d1 = getArray(ciftrain1k[1])
+dim(d1)
+```
+
+A little more manipulation allows
+us to visualize the possum image directly.
+
+```{r lkdat}
+d11 = d1[1,,,,drop=TRUE]
+writeJPEG(d11/255, "possum.jpg")
+show_jpg("possum.jpg")
+```
+
+# The numbers beneath the image
+
+We get familiar with arrays of numbers
+when using spreadsheets like excel.
+The variable `d11` is a numerical array
+made of three 32 x 32 arrays stacked
+on top of each other.  The first array
+gives red intensity, the other two give
+green and blue respectively.
+
+We can look at the numbers using `[]`.
+
+```{r lnum}
+d11[1:3,1:3,]
+```
+
+There are 3 3x3 arrays shown here.  
+
+We can get an appreciation for the effect
+of color balance by setting all the array
+values to a common value.  For example
+
+```{r makenew}
+d12 = d11
+d12[,,3] = d12[,,2] # reset blue to green level
+d12[,,1] = d12[,,2] # reset red to green level
+d12[1:3,1:3,]
+```
+
+Now there are no color distinctions:
+
+```{r lkgr}
+writeJPEG(d12/255, "poss2.jpg")
+show_jpg("poss2.jpg")
+```
+
+# Exercises
+
+The following code produces the possum image.
+Change one character so that it produces the raccoon
+image.
+
+```{r doposs, eval=FALSE}
+d1 = getArray(ciftrain1k[1])
+d11 = d1[1,,,,drop=TRUE]
+writeJPEG(d11/255, "img.jpg")
+show_jpg("img.jpg")
+```
+
+The possum and raccoon images have very different color
+schemes.  We can see the relative abundances of red, green
+and blue pixels in the possum image using the following:
+
+```{r lkdens}
+d1 = getArray(ciftrain1k[1])
+d11 = d1[1,,,,drop=TRUE]
+plot(density(d11[,,1]), lwd=2, col="red")
+lines(density(d11[,,2]), lwd=2, col="green")
+lines(density(d11[,,3]), lwd=2, col="blue")
+```
+
+Produce a similar display for the raccoon image.
+
+What would you expect to see for the orange image?
+

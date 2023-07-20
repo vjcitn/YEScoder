@@ -1,0 +1,43 @@
+---
+title: "YEScoder introduction"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{YEScoder introduction}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# YEScoder and cancer data science
+
+Our work with this package will emphasize the use
+of programming with R in several domains
+
+- working with images as digital files that are
+manipulated and displayed for human visualization
+
+- working with maps that provide location information
+on cancer incidence
+
+- working with public information on cancer genomics
+and genetics
+
+# Getting started
+
+You'll be working with RStudio to manage your code
+and data.  Once you have started RStudio, you can
+issue these commands in the console:
+
+```
+install.packages("BiocManager") # respond affirmatively to any prompts
+BiocManager::install("vjcitn/littleDeep") # affirmative to any prompts
+BiocManager::install("vjcitn/YEScoder")
+```
+
+Once these have succeeded, visit
