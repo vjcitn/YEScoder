@@ -40,4 +40,5 @@ BiocManager::install("vjcitn/littleDeep") # affirmative to any prompts
 BiocManager::install("vjcitn/YEScoder")
 ```
 
-Once these have succeeded, visit
+Once these have succeeded, visit the [ImageArray](https://vjcitn.github.io/YEScoder/articles/Z1_ImageArrays.html) introduction for some basic activities with
+images.
