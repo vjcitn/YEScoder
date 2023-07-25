@@ -1,7 +1,7 @@
 Package: YEScoder
 Date: 2022-10-01
 Title: Basics of R coding for cancer data science at YES for CURE
-Version: 0.0.0
+Version: 0.0.1
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Description: Basics of R coding for cancer data science at YES for CURE
 License: Artistic-2.0
 Encoding: UTF-8
 Depends: R (>= 3.6), dplyr
-Suggests: knitr, testthat, BiocStyle, littleDeep, jpeg
+Suggests: knitr, testthat, BiocStyle, littleDeep, jpeg, styler
 VignetteBuilder: knitr
 biocViews: Infrastructure
 RoxygenNote: 7.2.3

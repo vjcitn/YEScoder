@@ -129,7 +129,13 @@ lines(density(d11[,,2]), lwd=2, col="green")
 lines(density(d11[,,3]), lwd=2, col="blue")
 ```
 
-Produce a similar display for the raccoon image.
+Questions: What do the x and y axes measure in this display?
 
-What would you expect to see for the orange image?
+Produce a similar display for the raccoon image.  [This question addresses
+the use of plot, lines, and density after subsetting `ciftrain1k`.]
+
+How could we produce a function that produces the density traces
+with input of a length-1 ImageArray?
+
+What color intensity traces would you expect to see for the orange image?
 

@@ -1,0 +1,57 @@
+---
+title: "Z2: YEScoder color concepts and modifications"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Z2: YEScoder color concepts and modifications}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# RGB settings
+
+```{r setup,message=FALSE}
+library(YEScoder)
+colordot(1,0,0)
+colordot(1,1,0)
+```
+
+What is the color name for `colordot(.9,.5,0)`?
+
+# An interactive approach
+
+Start the colorapp shiny app by calling the function `colorapp()`.
+
+Whatis a slider setting for "purple"?
+
+Here is the code, nicely formatted:
+```{r dodump,echo=FALSE,message=FALSE,results="hide"}
+appcode = dumpapp()
+```
+```{r showit,echo=FALSE}
+cat(appcode, sep="\n")
+```
+
+It is a function with no arguments that defines two objects:
+
+- ui: the user interface, built using shiny components that
+compose html, css and javascript to define panels, tabs, and
+sliders
+- server: a function with arguments input and output (and
+potentially session) that defines how user activities lead
+to computations that are transformed and passed back to the
+browser
+
+When those objects are properly defined, the shiny package
+function `runApp` will operate on them to produce an interactive
+app in the browser.  The app has access to data accessible in
+the R session in which the app was started.
+
+Look at the code defining the "orange" tab.  What is being done
+to the color intensities on the basis of slider settings?
