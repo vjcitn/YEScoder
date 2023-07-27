@@ -37,7 +37,7 @@ issue these commands in the console:
 ```
 install.packages("BiocManager") # respond affirmatively to any prompts
 BiocManager::install("vjcitn/littleDeep") # affirmative to any prompts
-BiocManager::install(c("vjcitn/YEScoder", "BiocStyle"))
+BiocManager::install(c("vjcitn/YEScoder", "BiocStyle", "styler"))
 ```
 
 Once these have succeeded, visit the [ImageArray](https://vjcitn.github.io/YEScoder/articles/Z1_ImageArrays.html) introduction for some basic activities with
