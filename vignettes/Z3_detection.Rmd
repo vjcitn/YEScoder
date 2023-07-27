@@ -1,0 +1,42 @@
+---
+title: "Z3: YEScoder feature detection"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Z3: YEScoder feature detection}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# The concept of an image feature
+
+```{r setup,message=FALSE}
+library(YEScoder)
+library(littleDeep)
+data(ciftrain1k)
+plotOne(ciftrain1k[4])
+```
+
+What are the most prominent features?
+
+# Automated edge detection
+
+```{r lksob}
+sob1 = runSobel(ciftrain1k[4])
+sob1
+plotOne(sob1, transpose=TRUE, interpolate=FALSE)
+```
+
+What is an edge?  How many edges have been found?
+
+What kind of analysis of the numerical
+data underlying the image would be needed to count the edges?
+
+
+

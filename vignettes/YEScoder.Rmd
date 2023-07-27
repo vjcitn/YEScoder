@@ -28,7 +28,7 @@ on cancer incidence
 - working with public information on cancer genomics
 and genetics
 
-# Getting started
+# Getting started with YEScoder images
 
 You'll be working with RStudio to manage your code
 and data.  Once you have started RStudio, you can
@@ -37,7 +37,7 @@ issue these commands in the console:
 ```
 install.packages("BiocManager") # respond affirmatively to any prompts
 BiocManager::install("vjcitn/littleDeep") # affirmative to any prompts
-BiocManager::install("vjcitn/YEScoder")
+BiocManager::install(c("vjcitn/YEScoder", "BiocStyle"))
 ```
 
 Once these have succeeded, visit the [ImageArray](https://vjcitn.github.io/YEScoder/articles/Z1_ImageArrays.html) introduction for some basic activities with

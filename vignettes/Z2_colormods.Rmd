@@ -55,3 +55,6 @@ the R session in which the app was started.
 
 Look at the code defining the "orange" tab.  What is being done
 to the color intensities on the basis of slider settings?
+
+Do you see how to modify the app so that any of the ciftrain1k
+images could be visualized and color-transformed interactively?

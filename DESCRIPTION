@@ -1,7 +1,7 @@
 Package: YEScoder
-Date: 2022-10-01
+Date: 2023-07-27
 Title: Basics of R coding for cancer data science at YES for CURE
-Version: 0.0.1
+Version: 0.0.3
 Authors@R: 
     c(person(
         "Vincent", "Carey", role = c("aut", "cre"),

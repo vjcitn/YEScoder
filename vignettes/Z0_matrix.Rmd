@@ -1,0 +1,172 @@
+---
+title: "Z0: YEScoder arrays, pixels, and images"
+author: "Vincent J. Carey, stvjc at channing.harvard.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Z0: YEScoder arrays, pixels, and images}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    highlight: pygments
+    number_sections: yes
+    theme: united
+    toc: yes
+---
+
+# R's matrix datatype
+
+```{r lkmat}
+mymat = matrix(1:25, ncol=5)
+mymat
+class(mymat)
+mode(mymat)
+dim(mymat)
+```
+
+## Get an element
+```{r lk2}
+mymat[3,3]
+```
+
+## Set an element
+```{r lk3}
+mymat[4,4] = 1234
+mymat
+```
+
+## Change all elements
+```{r lk5}
+mymat = 5*mymat
+mymat
+```
+
+# Matrix elements as "pixels"
+
+We are speaking figuratively here.  We will
+not be operating directly on your screen's pixels.
+But we will get the concept of a "rasterized image" --
+have a look at the wikipedia page for [raster](https://en.wikipedia.org/wiki/Raster_graphics).
+
+```{r rebu, fig.width=4, fig.height=4}
+mymat = matrix(1:25, ncol=5)
+image(mymat, axes=FALSE)
+```
+
+That's a "chunky" rasterization of data in a 5x5 grid.
+Let's do something more fine-grained:
+
+```{r rebu2, fig.width=4, fig.height=4}
+mymat = matrix(1:625, ncol=25)
+image(mymat, col=rep(rainbow(12), 625/12), breaks=1:625, axes=FALSE)
+```
+
+We can't easily distinguish 625 colors, so there's a reuse
+of colors from row to row.  But you can probably make out 625 different
+little square positions in this pixelated display.
+
+# Key distinctions: image to device
+
+- An **image**, interpretable by the human visual system and
+human reasoning, that we want to present.  In this case there
+really isn't one, we have just produced an ordered sequence of
+numbers in a particular computational format (R matrix).
+More commonly the image will be camera-captured and formatted
+into a file using the JPEG or TIFF conventions.
+- **Numerical data** "representing" the image.  Conventions
+are needed to structure and scale this data.
+- A **rendering" process** that transmits the numerical data
+to a plotting or projection system for visualization.
+- A **graphics device** that receives the rendering and presents
+the image to the viewer.
+
+# Palettes manage colors
+
+Part of the rendering process involves mapping numerical data
+to visible colors.  This is done in R using "palettes".
+There is a fair amount of technicality involved.  Let's scratch
+the surface.
+
+The `rainbow` function produces a palette.  Let's use it
+and then explain it.
+
+```{r myr}
+plot(x=1:10, y=1:10, col=rainbow(10), pch=19, cex=5,
+  xlab="x", ylab="y")
+```
+
+We see that the values plotted at coordinates (1,1), (2,2) and
+so forth have different colors.  What are these colors?
+Note that R actually has a color vocabulary.  Here's a little
+bit of it:
+```{r lkpa}
+colors()[1:10]
+```
+
+But these nice terms for paint colors are not used for
+the rainbow palette.
+```{r lkra}
+rainbow(10)
+```
+
+We can start interpreting this.  
+
+- We have to know a little bit about hexadecimal numbers.
+This is the mapping `0 -> 0, 1 -> 1, ..., 9 -> 9, 10 -> A, 11 -> B, ...,
+15 -> F`.
+- We have to know that
+we are using the [RGB color model](https://en.wikipedia.org/wiki/RGB_color_model) by default.
+In this model each color is defined by three numbers.  In R's usage,
+each color intensity is a number from 0 to 255.
+- We then look at the rainbow() outputs as triples. The
+layout is `#abcdef`
+and `ab` is the hexadecimal number for the red intensity ,
+`cd` is the hex for green and `ef` is hex for blue.
+- The "two digit" hex numbers `ab` are interpreted in base 10 as
+`16*a + b`.  Similarly for `cd` and `ef`.
+
+Here's a little code that decodes the two-letter hex strings.
+```{r dohex}
+hexi = function(str) {
+ stopifnot(nchar(str) == 2)
+ ss = strsplit(str, "")[[1]]
+ decode = 0:15
+ names(decode) = c(0:9, "A", "B", "C", "D", "E", "F")
+ unname(16*decode[ss[1]] + decode[ss[2]])
+}
+hexi("FF")
+hexi("CC")
+hexi("00")
+hexi("01")
+```
+
+So we can see that the rainbow output
+```{r lkrabbb}
+rainbow(10)
+```
+starts with (255,0,0), so pure red, no green
+or blue.  The fourth point is `r rainbow(10)[4]`,
+strong score for green, but a little red too.  This
+is because the rainbow palette makes smooth transitions
+between primary colors.
+
+
+Exercise.  How would you change
+```
+plot(x=1:10, y=1:10, col=rainbow(10), pch=19, cex=5,
+  xlab="x", ylab="y")
+```
+to illustrate a rainbow color set with 20 entries?
+
+Try it -- do all the colors look different?
+
+
+Exercise.  Substitute `topo.colors` for `rainbow` in
+these plot commands.  Can you justify the color scheme
+for `topo.colors`?
+
+Hint.  Think of the display for
+```
+filled.contour(volcano, color.palette=topo.colors)
+```
+as a topographic map of a volcanic island.
