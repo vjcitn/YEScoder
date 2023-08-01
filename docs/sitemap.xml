@@ -7,7 +7,16 @@
     <loc>https://github.com/vjcitn/YEScoder/articles/YEScoder.html</loc>
   </url>
   <url>
+    <loc>https://github.com/vjcitn/YEScoder/articles/Z0_matrix.html</loc>
+  </url>
+  <url>
     <loc>https://github.com/vjcitn/YEScoder/articles/Z1_ImageArrays.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/YEScoder/articles/Z2_colormods.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/YEScoder/articles/Z3_detection.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/YEScoder/articles/index.html</loc>
@@ -17,6 +26,15 @@
   </url>
   <url>
     <loc>https://github.com/vjcitn/YEScoder/index.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/YEScoder/reference/colorapp.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/YEScoder/reference/colordot.html</loc>
+  </url>
+  <url>
+    <loc>https://github.com/vjcitn/YEScoder/reference/dumpapp.html</loc>
   </url>
   <url>
     <loc>https://github.com/vjcitn/YEScoder/reference/index.html</loc>
